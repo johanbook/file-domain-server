@@ -3,6 +3,7 @@ const http = require("http");
 const path = require("path");
 
 const DEFAULT_INDEX_FILE = process.env.DEFAULT_INDEX_FILE || "index.html";
+const PORT = process.env.PORT || 8080;
 const ROOT_FILE_PATH = process.env.ROOT_FILE_PATH || "build";
 
 function getFile(filePath) {
@@ -45,9 +46,10 @@ function handleRequest(req, res) {
     res.end();
     return;
   }
+
   res.writeHead(200);
   res.end(file);
 }
 
 const server = http.createServer(handleRequest);
-server.listen(8080);
+server.listen(PORT);

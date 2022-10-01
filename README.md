@@ -1,10 +1,11 @@
-# domain-file-server
+# file-domain-server
 
 _This software has not been tested in regards of security and should not be used
 in a production environment_
 
-**domain-file-server** is a simplistic Nodejs file server supporting multiple
-domains. It is mainly intended to run an internal network with its own DNS server.
+**file-server-domain** is a simplistic Nodejs file server supporting multiple
+domains. It is mainly intended to run an internal network with its own DNS
+server.
 
 ## Configuration
 
@@ -26,4 +27,17 @@ build/mycat.com
 build/mycat.com/favicon.ico
 build/mycat.com/index.html
 build/mycat.com/script.js
+```
+
+## Docker
+
+The server can be run through Docker
+
+```sh
+docker run \
+	--detach \
+	--publish 8080:8080 \
+	--restart unless-stopped \
+	--volume ${PWD}/build/:/app/build/ \
+	johanbook/file-domain-server:latest
 ```
