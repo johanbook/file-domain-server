@@ -1,5 +1,6 @@
 const fs = require("fs");
 const http = require("http");
+const mime = require("mime");
 const path = require("path");
 
 const DEFAULT_INDEX_FILE = process.env.DEFAULT_INDEX_FILE || "index.html";
@@ -14,6 +15,10 @@ function getFile(filePath) {
     console.error(`Could not find file "${filePath}"`);
     return;
   }
+}
+
+function getFileMime(filePath) {
+  return mime.getType(filePath);
 }
 
 function getDomainFromRequest(req) {
@@ -47,6 +52,9 @@ function handleRequest(req, res) {
     return;
   }
 
+  const mimeType = getFileMime(actualFilePath);
+
+  res.setHeader("Content-Type", mimeType);
   res.writeHead(200);
   res.end(file);
 }
