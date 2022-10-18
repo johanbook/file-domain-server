@@ -1,13 +1,14 @@
 {
   "name": "domain-file-server",
   "version": "1.0.1",
-  "description": "",
+  "description": "a simplistic file server for multiple domains",
   "main": "index.js",
   "scripts": {
-    "release": "standard-version"
+    "release": "standard-version",
+    "serve": "node src"
   },
   "keywords": [],
-  "author": "",
+  "author": "Johan Book",
   "license": "ISC",
   "devDependencies": {
     "prettier": "^2.7.1",

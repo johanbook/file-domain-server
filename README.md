@@ -7,7 +7,11 @@ in a production environment_
 different folders depending on the HTTP `Host` header. It is mainly intended to
 run an internal network with its own DNS server.
 
-## Configuration
+## Get started
+
+The server can be run either via a Nodejs runtime or through Docker.
+
+### Folder structure
 
 Create an asset folder, named `build` by default. In this folder create one
 folder for each domain that should be served. These folders should contain the
@@ -29,18 +33,10 @@ build/mycat.com/index.html
 build/mycat.com/script.js
 ```
 
-### Environmental variables
+### Using Docker
 
-The following can be configured as environment variables:
-
-- **DEFAULT_INDEX_FILE** name of file served on paths ending with a trailing
-  slash (default `index.html`).
-- **PORT** the port the server should listen on (default 8080).
-- **ROOT_FILE_PATH** root directory of served file tree (default `build`).
-
-## Docker
-
-The server can be run through Docker
+The server can be run through Docker by mounting in the served directory as a
+volume. To the serve the `build` folder in the current directory, run
 
 ```sh
 docker run \
@@ -50,6 +46,22 @@ docker run \
 	--volume ${PWD}/build/:/app/build/ \
 	johanbook/file-domain-server:latest
 ```
+
+The Docker images are available for multiple architectures, including armv7.
+
+## Configuration
+
+The following can be configured as environment variables:
+
+- **DEFAULT_INDEX_FILE** name of file served on paths ending with a trailing
+  slash (default `index.html`).
+- **PORT** the port the server should listen on (default 8080).
+- **ROOT_FILE_PATH** root directory of served file tree (default `build`).
+
+## Documentation
+
+For documentation on technologies, security aspect and similar, see the
+[contributions file](./CONTRIBUTING.md).
 
 ## Contributing
 

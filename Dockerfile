@@ -10,6 +10,6 @@ RUN npm ci
 
 USER node
 
-CMD ["node", "server.js"]
+CMD ["node", "src"]
 
 EXPOSE 8080
