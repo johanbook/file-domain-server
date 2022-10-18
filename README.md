@@ -3,9 +3,9 @@
 _This software has not been tested in regards of security and should not be used
 in a production environment_
 
-**file-server-domain** is a simplistic Nodejs file server supporting multiple
-domains. It is mainly intended to run an internal network with its own DNS
-server.
+**file-domain-server** is a simplistic Nodejs HTTP file server that serve
+different folders depending on the HTTP `Host` header. It is mainly intended to
+run an internal network with its own DNS server.
 
 ## Configuration
 
@@ -29,6 +29,15 @@ build/mycat.com/index.html
 build/mycat.com/script.js
 ```
 
+### Environmental variables
+
+The following can be configured as environment variables:
+
+- **DEFAULT_INDEX_FILE** name of file served on paths ending with a trailing
+  slash (default `index.html`).
+- **PORT** the port the server should listen on (default 8080).
+- **ROOT_FILE_PATH** root directory of served file tree (default `build`).
+
 ## Docker
 
 The server can be run through Docker
@@ -41,3 +50,8 @@ docker run \
 	--volume ${PWD}/build/:/app/build/ \
 	johanbook/file-domain-server:latest
 ```
+
+## Contributing
+
+For contributions and development procedures, see the
+[contributions file](./CONTRIBUTING.md).
