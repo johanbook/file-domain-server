@@ -1,8 +1,5 @@
 # file-domain-server
 
-_This software has not been tested in regards of security and should not be used
-in a production environment_
-
 **file-domain-server** is a simplistic Nodejs HTTP file server that serve
 different folders depending on the HTTP `Host` header. It is mainly intended to
 run an internal network with its own DNS server.

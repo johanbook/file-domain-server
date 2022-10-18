@@ -1,8 +1,24 @@
 name: Build Docker images
 on: push
 jobs:
+  audit-npm-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.18.0
+          cache: "npm"
+
+      - name: Audit NPM dependencies
+        run: npm audit
+
   build-and-push-docker-images:
     runs-on: ubuntu-latest
+    needs: audit-npm-dependencies
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
