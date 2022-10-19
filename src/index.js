@@ -1,7 +1,8 @@
-const fs = require("fs");
-const http = require("http");
+const fs = require("node:fs");
+const http = require("node:http");
+const path = require("node:path");
+
 const mime = require("mime");
-const path = require("path");
 
 const DEFAULT_INDEX_FILE = process.env.DEFAULT_INDEX_FILE || "index.html";
 const FALLBACK_FILE = process.env.FALLBACK_FILE || null;
