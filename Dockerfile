@@ -6,7 +6,7 @@ LABEL description="File server with support for multiple domains"
 
 WORKDIR /app
 COPY . .
-RUN npm ci
+RUN npm ci --production
 
 USER node
 
