@@ -1,8 +1,8 @@
 # file-domain-server
 
-**file-domain-server** is a simplistic Nodejs HTTP file server that serve
+**file-domain-server** is a simplistic Nodejs HTTP file server that serves
 different folders depending on the HTTP `Host` header. It is mainly intended to
-run an internal network with its own DNS server.
+run on an internal network with its own DNS server.
 
 ## Get started
 
@@ -52,6 +52,10 @@ The following can be configured as environment variables:
 
 - **DEFAULT_INDEX_FILE** name of file served on paths ending with a trailing
   slash (default `index.html`).
+- **FALLBACK_FILE** name of file served as a fallback if requested file is not
+  found. Set to `index.html` to enable client-side routing or to e.g.
+  `error.html` to display an error page (note that response still returns a 200
+  status code). It is undefined by default and no fallback file will be served.
 - **PORT** the port the server should listen on (default 8080).
 - **ROOT_FILE_PATH** root directory of served file tree (default `build`).
 

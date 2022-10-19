@@ -4,6 +4,7 @@ const mime = require("mime");
 const path = require("path");
 
 const DEFAULT_INDEX_FILE = process.env.DEFAULT_INDEX_FILE || "index.html";
+const FALLBACK_FILE = process.env.FALLBACK_FILE || null;
 const PORT = process.env.PORT || 8080;
 const ROOT_FILE_PATH = process.env.ROOT_FILE_PATH || "build";
 
@@ -45,7 +46,14 @@ function handleRequest(req, res) {
   console.debug("Requesting", domain, filePath);
 
   const actualFilePath = createFilePath(domain, filePath);
-  const file = getFile(actualFilePath);
+  let file = getFile(actualFilePath);
+
+  if (!file && FALLBACK_FILE) {
+    const fallbackFilePath = createFilePath(domain, FALLBACK_FILE);
+    console.debug("Serving fallback file:", fallbackFilePath);
+    file = getFile(fallbackFilePath);
+  }
+
   if (!file) {
     res.writeHead(404);
     res.end();
@@ -62,4 +70,4 @@ function handleRequest(req, res) {
 const server = http.createServer(handleRequest);
 server.listen(PORT);
 
-console.info(`Listening on port ${PORT}`)
+console.info(`Listening on port ${PORT}`);
