@@ -12,13 +12,13 @@ The software is shipped in Docker images.
 ## Security
 
 The software is intended to be run on
-[Nodejs 16.18.0 LTS](https://nodejs.org/en/) and all released versions have 0
-vulnerabilities in NPM audits. This check is carried out as part of the release
-procedure.
-
-The software relies on the
+[Nodejs 16.18.0 LTS](https://nodejs.org/en/). The software relies on the
 [Nodejs HTTP module](https://nodejs.org/api/http.html) and will be vulnerable to
 any vulnerabilities in that module.
+
+All released versions have 0 vulnerabilities in NPM audits. This check is
+carried out as part of the release process. The repository is also scanned
+weekly with [Snyk](snyk.io) for vulnerabilities.
 
 The software has been tested for
 [LFI](https://www.johanbook.com/docs/security/vulnerabilities/lfi)

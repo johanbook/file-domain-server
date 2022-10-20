@@ -1,8 +1,14 @@
 # file-domain-server
 
+![version](https://img.shields.io/github/v/tag/johanbook/file-domain-server)
+![docker pulls](https://img.shields.io/docker/pulls/johanbook/file-domain-server)
+![vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/johanbook/file-domain-server)
+
 **file-domain-server** is a simplistic Nodejs HTTP file server that serves
 different folders depending on the HTTP `Host` header. It is mainly intended to
 run on an internal network with its own DNS server.
+
+The project aims to be minimal production dependency.
 
 ## Get started
 
@@ -28,6 +34,15 @@ build/mycat.com
 build/mycat.com/favicon.ico
 build/mycat.com/index.html
 build/mycat.com/script.js
+```
+
+### Using Nodejs
+
+Install and run the server using
+
+```sh
+npm ci --production
+ROOT_FILE_PATH=/path/to/folder node src
 ```
 
 ### Using Docker
