@@ -4,6 +4,8 @@ const path = require("node:path");
 
 const mime = require("mime");
 
+const logger = require("./logger");
+
 const DEFAULT_INDEX_FILE = process.env.DEFAULT_INDEX_FILE || "index.html";
 const FALLBACK_FILE = process.env.FALLBACK_FILE || null;
 const PORT = process.env.PORT || 8080;
@@ -14,7 +16,7 @@ function getFile(filePath) {
     const file = fs.readFileSync(filePath);
     return file;
   } catch {
-    console.error(`Could not find file "${filePath}"`);
+    logger.error(`Could not find file "${filePath}"`);
     return;
   }
 }
@@ -44,20 +46,21 @@ function createFilePath(domain, filePath) {
 function handleRequest(req, res) {
   const domain = getDomainFromRequest(req);
   const filePath = getFilePathFromRequest(req);
-  console.debug("Requesting", domain, filePath);
+  logger.debug(`Requesting ${domain}${filePath}`);
 
   const actualFilePath = createFilePath(domain, filePath);
   let file = getFile(actualFilePath);
 
   if (!file && FALLBACK_FILE) {
     const fallbackFilePath = createFilePath(domain, FALLBACK_FILE);
-    console.debug("Serving fallback file:", fallbackFilePath);
+    logger.debug(`Serving fallback file: ${fallbackFilePath}`);
     file = getFile(fallbackFilePath);
   }
 
   if (!file) {
     res.writeHead(404);
     res.end();
+    logger.accessLog(req, res);
     return;
   }
 
@@ -66,9 +69,10 @@ function handleRequest(req, res) {
   res.setHeader("Content-Type", mimeType);
   res.writeHead(200);
   res.end(file);
+  logger.accessLog(req, res);
 }
 
 const server = http.createServer(handleRequest);
 server.listen(PORT);
 
-console.info(`Listening on port ${PORT}`);
+logger.info(`Listening on port ${PORT}`);

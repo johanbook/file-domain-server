@@ -50,12 +50,15 @@ The Docker images are available for multiple architectures, including armv7.
 
 The following can be configured as environment variables:
 
+- **ACCESS_LOGS** if access logs are showed (default `false`).
 - **DEFAULT_INDEX_FILE** name of file served on paths ending with a trailing
   slash (default `index.html`).
 - **FALLBACK_FILE** name of file served as a fallback if requested file is not
   found. Set to `index.html` to enable client-side routing or to e.g.
   `error.html` to display an error page (note that response still returns a 200
   status code). It is undefined by default and no fallback file will be served.
+- **LOG_LEVEL** used log level. Available values are `debug`, `info`, `warning`
+  and `error` (default `info`).
 - **PORT** the port the server should listen on (default 8080).
 - **ROOT_FILE_PATH** root directory of served file tree (default `build`).
 
