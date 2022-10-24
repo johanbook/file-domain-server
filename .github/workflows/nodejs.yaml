@@ -1,5 +1,11 @@
 name: Build Docker images
-on: push
+
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+
 jobs:
   audit-npm-dependencies:
     runs-on: ubuntu-latest
@@ -14,10 +20,11 @@ jobs:
           cache: "npm"
 
       - name: Audit NPM dependencies
-        run: npm audit
+        run: npm audit --only=prod
 
   build-and-push-docker-images:
     runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
     needs: audit-npm-dependencies
     steps:
       - name: Checkout repository
