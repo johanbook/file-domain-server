@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "release": "standard-version",
-    "serve": "node src"
+    "serve": "node src",
+    "test::performance": "artillery run --output .artillery/report.json test/config.yaml && artillery report ./artillery/report.json"
   },
   "keywords": [],
   "author": "Johan Book",
   "license": "ISC",
   "devDependencies": {
+    "artillery": "^2.0.0-23",
     "prettier": "^2.7.1",
     "standard-version": "^9.5.0"
   },

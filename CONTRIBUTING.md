@@ -24,6 +24,19 @@ The software has been tested for
 [LFI](https://www.johanbook.com/docs/security/vulnerabilities/lfi)
 vulnerabilities.
 
+## Testing
+
+### Performance testing
+
+We use [Artillery](https://www.npmjs.com/package/artillery) for performance
+testing. To generate a performance report, run
+
+```sh
+mkdir .artillery
+npm run test::performance
+<browser> .artillery/report.json.html
+```
+
 ## Development practices
 
 ### Git methodology
