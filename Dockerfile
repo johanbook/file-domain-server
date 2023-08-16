@@ -1,4 +1,4 @@
-FROM node:16.18.0-alpine
+FROM node:16.20.2-alpine
 
 LABEL maintainer="Johan Book"
 LABEL title="file-domain-server"
